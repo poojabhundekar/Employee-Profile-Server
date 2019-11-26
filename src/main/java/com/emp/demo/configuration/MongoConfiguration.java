@@ -1,10 +1,14 @@
 package com.emp.demo.configuration;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.data.mongodb.config.AbstractMongoConfiguration;
+import org.springframework.data.mongodb.config.EnableMongoAuditing;
 
 import com.mongodb.MongoClient;
 
+@Configuration
+@EnableMongoAuditing
 public class MongoConfiguration extends AbstractMongoConfiguration {
 
 	@Value("${spring.data.mongodb.database}")

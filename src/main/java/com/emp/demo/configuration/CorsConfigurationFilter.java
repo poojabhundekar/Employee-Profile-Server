@@ -10,12 +10,15 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.context.annotation.Configuration;
+
 /**
  * Cors filter for UI to Server mapping
  * 
  * @author Pooja
  *
  */
+@Configuration
 public class CorsConfigurationFilter implements Filter {
 
 	@Override
