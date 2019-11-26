@@ -6,7 +6,7 @@ package com.emp.demo.exception;
  * 
  * @author Pooja
  */
-public class EmployeeException extends RuntimeException {
+public class UserException extends RuntimeException {
 
 	private String message;
 	private String error;
@@ -17,7 +17,7 @@ public class EmployeeException extends RuntimeException {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	public EmployeeException(String message) {
+	public UserException(String message) {
 		super(message);
 		this.message = message;
 	}

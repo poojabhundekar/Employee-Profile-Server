@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.emp.demo.domain.User;
 import com.emp.demo.dto.UserDto;
-import com.emp.demo.exception.EmployeeException;
+import com.emp.demo.exception.UserException;
 import com.emp.demo.repository.UserRepository;
 
 /**
@@ -17,36 +17,36 @@ import com.emp.demo.repository.UserRepository;
  * @author Pooja
  *
  */
-public class EmployeeServiceImpl implements EmployeeService {
+public class UserServiceImpl implements UserService {
 
 	@Autowired
 	private UserRepository userRepository;
 
 	/*
-	 * Concrete method for get all employees API
+	 * Concrete method for get all users API
 	 */
 	@Override
-	public List<UserDto> getEmployees() {
+	public List<UserDto> getUsers() {
 		try {
-			// Repository call to find all Employees
+			// Repository call to find all users
 
 			return userRepository.findAll().stream().map(this::convertFromDomainToDto)
 					.sorted(Comparator.comparing(UserDto::getFirstName)).collect(Collectors.toList());
 		} catch (Exception e) {
-			throw new EmployeeException("Error while fetching Employee data");
+			throw new UserException("Error while fetching Employee data");
 		}
 	}
 
 	/*
-	 * Concrete method for Save employee API
+	 * Concrete method for Save user API
 	 */
 	@Override
-	public UserDto saveEmployee(UserDto emp) {
+	public UserDto saveUser(UserDto user) {
 		try {
-			// New employee object is storing by repository
-			return convertFromDomainToDto(userRepository.save(convertFromDtoToDomain(emp)));
+			// New user object is storing by repository
+			return convertFromDomainToDto(userRepository.save(convertFromDtoToDomain(user)));
 		} catch (Exception e) {
-			throw new EmployeeException("Error while saving " + emp.getFirstName() + " data");
+			throw new UserException("Error while saving " + user.getFirstName() + " data");
 		}
 	}
 
@@ -59,15 +59,15 @@ public class EmployeeServiceImpl implements EmployeeService {
 	}
 
 	/*
-	 * Concrete method for Delete employee API
+	 * Concrete method for Delete user API
 	 */
 	@Override
-	public String deleteEmployeeById(String id) {
+	public String deleteUserById(String id) {
 		try {
 			userRepository.deleteById(id);
 			return "Deleted successfully..!";
 		} catch (Exception e) {
-			throw new EmployeeException("Error while delete Employee data, Please try later.");
+			throw new UserException("Error while delete Employee data, Please try later.");
 		}
 	}
 
