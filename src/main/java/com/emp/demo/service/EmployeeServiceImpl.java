@@ -8,9 +8,9 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.emp.demo.domain.User;
-import com.emp.demo.dto.EmployeeDto;
+import com.emp.demo.dto.UserDto;
 import com.emp.demo.exception.EmployeeException;
-import com.emp.demo.repository.EmployeeRepository;
+import com.emp.demo.repository.UserRepository;
 
 /**
  * 
@@ -20,45 +20,54 @@ import com.emp.demo.repository.EmployeeRepository;
 public class EmployeeServiceImpl implements EmployeeService {
 
 	@Autowired
-	private EmployeeRepository employeeRepository;
+	private UserRepository userRepository;
 
+	/*
+	 * Concrete method for get all employees API
+	 */
 	@Override
-	public List<EmployeeDto> getEmployees() {
+	public List<UserDto> getEmployees() {
 		try {
 			// Repository call to find all Employees
 
-			return employeeRepository.findAll().stream().map(emp -> convertToDto(emp))
-					.sorted(Comparator.comparing(EmployeeDto::getFirstName)).collect(Collectors.toList());
+			return userRepository.findAll().stream().map(this::convertFromDomainToDto)
+					.sorted(Comparator.comparing(UserDto::getFirstName)).collect(Collectors.toList());
 		} catch (Exception e) {
-			throw new EmployeeException("Error while fetching Employees data");
+			throw new EmployeeException("Error while fetching Employee data");
 		}
 	}
 
+	/*
+	 * Concrete method for Save employee API
+	 */
 	@Override
-	public EmployeeDto saveEmployee(EmployeeDto emp) {
+	public UserDto saveEmployee(UserDto emp) {
 		try {
 			// New employee object is storing by repository
-			return convertToDto(employeeRepository.save(convertToDomain(emp)));
+			return convertFromDomainToDto(userRepository.save(convertFromDtoToDomain(emp)));
 		} catch (Exception e) {
-			throw new EmployeeException("Error while saving Employee data");
+			throw new EmployeeException("Error while saving " + emp.getFirstName() + " data");
 		}
 	}
 
-	private EmployeeDto convertToDto(User emp) {
-		return new ModelMapper().map(emp, EmployeeDto.class);
+	private UserDto convertFromDomainToDto(User emp) {
+		return new ModelMapper().map(emp, UserDto.class);
 	}
 
-	private User convertToDomain(EmployeeDto emp) {
+	private User convertFromDtoToDomain(UserDto emp) {
 		return new ModelMapper().map(emp, User.class);
 	}
 
+	/*
+	 * Concrete method for Delete employee API
+	 */
 	@Override
 	public String deleteEmployeeById(String id) {
 		try {
-			employeeRepository.deleteById(id);
+			userRepository.deleteById(id);
 			return "Deleted successfully..!";
 		} catch (Exception e) {
-			throw new EmployeeException("Could not delete at this moment, Please try again.");
+			throw new EmployeeException("Error while delete Employee data, Please try later.");
 		}
 	}
 

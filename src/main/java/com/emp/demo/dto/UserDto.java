@@ -8,7 +8,7 @@ import javax.validation.constraints.Past;
 import com.emp.demo.domain.Gender;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
-public class EmployeeDto {
+public class UserDto {
 	private String id;
 	private Long version;
 
@@ -134,7 +134,7 @@ public class EmployeeDto {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		EmployeeDto other = (EmployeeDto) obj;
+		UserDto other = (UserDto) obj;
 		if (createdDate == null) {
 			if (other.createdDate != null)
 				return false;

@@ -2,7 +2,7 @@ package com.emp.demo.service;
 
 import java.util.List;
 
-import com.emp.demo.dto.EmployeeDto;
+import com.emp.demo.dto.UserDto;
 
 public interface EmployeeService {
 	/**
@@ -11,7 +11,7 @@ public interface EmployeeService {
 	 * @author Pooja B H
 	 * @return
 	 */
-	List<EmployeeDto> getEmployees();
+	List<UserDto> getEmployees();
 
 	/**
 	 * saveEmployee is a method to save employee to database
@@ -19,7 +19,7 @@ public interface EmployeeService {
 	 * @author Pooja B H
 	 * @return
 	 */
-	EmployeeDto saveEmployee(EmployeeDto emp);
+	UserDto saveEmployee(UserDto emp);
 
 	/**
 	 * deleteEmployeeById is a method to delete employee data from database
