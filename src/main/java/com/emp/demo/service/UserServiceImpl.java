@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.emp.demo.domain.User;
 import com.emp.demo.dto.UserDto;
@@ -17,6 +18,7 @@ import com.emp.demo.repository.UserRepository;
  * @author Pooja
  *
  */
+@Service
 public class UserServiceImpl implements UserService {
 
 	@Autowired
