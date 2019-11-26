@@ -23,7 +23,7 @@ import com.emp.demo.service.UserService;
  *
  */
 @RestController
-@RequestMapping(path = "/employees")
+@RequestMapping(path = "user")
 public class UserEndpoint {
 	
 	@Autowired
