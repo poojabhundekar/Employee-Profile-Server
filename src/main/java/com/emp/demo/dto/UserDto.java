@@ -24,12 +24,22 @@ public class UserDto {
 	@JsonFormat(pattern = "yyyy-MM-dd HH:mm")
 	@Past(message = "Must be a past date")
 	private LocalDateTime dob;
+	
+	private String fatherName;
 
 	private Gender gender;
 
 	private LocalDateTime createdDate;
 
 	private LocalDateTime lastModifiedDate;
+	
+	public String getFatherName() {
+		return fatherName;
+	}
+
+	public void setFatherName(String fatherName) {
+		this.fatherName = fatherName;
+	}
 
 	public String getId() {
 		return id;

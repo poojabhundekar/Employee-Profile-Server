@@ -21,6 +21,16 @@ public class User {
 	private Gender gender;
 
 	private LocalDateTime dateOfBirth;
+	
+	private String fatherName;
+	
+	public String getFatherName() {
+		return fatherName;
+	}
+
+	public void setFatherName(String fatherName) {
+		this.fatherName = fatherName;
+	}
 
 	public LocalDateTime getDateOfBirth() {
 		return dateOfBirth;
